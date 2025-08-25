@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Skunkworks Local Lead Generator — One‑Pager</title>
+
+  <!-- Favicon / Branding (unchanged) -->
+  <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/SKUNKSCRAPE/SkunkScrapeCodex/7a1198b7682e84070bd12a6492f9c3e65e6e2164/4.svg">
+  <link rel="alternate icon" href="https://raw.githubusercontent.com/SKUNKSCRAPE/SkunkScrapeCodex/7a1198b7682e84070bd12a6492f9c3e65e6e2164/4.svg">
+
+  <!-- Fonts (same family as your file) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========= KEEPING YOUR COLOUR SYSTEM & GRADIENTS AS-IS ========= */
+    :root{
+      --bg: #f1f5f9;
+      --surface: rgba(255, 255, 255, 0.95);
+      --surface-elevated: rgba(248, 250, 252, 0.98);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-accent: #1e293b;
+      --brand: #10b981;
+      --brand-secondary: #3b82f6;
+      --brand-tertiary: #8b5cf6;
+      --accent: #f59e0b;
+      --border: rgba(148, 163, 184, 0.25);
+      --border-bright: rgba(16, 185, 129, 0.4);
+      --glow: 0 0 40px rgba(16, 185, 129, 0.12);
+      --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.12);
+      --gradient-primary: linear-gradient(135deg, var(--brand) 0%, var(--brand-secondary) 50%, var(--brand-tertiary) 100%);
+      --gradient-surface: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+      --gradient-accent: linear-gradient(45deg, #f0f9ff, #ecfdf5, #faf5ff);
+    }
+
+    /* Respect users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { 
+      height: 100%; 
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: 
+        radial-gradient(600px circle at 10% 20%, rgba(16, 185, 129, 0.08), transparent),
+        radial-gradient(400px circle at 90% 10%, rgba(59, 130, 246, 0.06), transparent),
+        radial-gradient(500px circle at 70% 90%, rgba(139, 92, 246, 0.05), transparent),
+        linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    /* Animated grid background (unchanged) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: grid-move 20s linear infinite;
+      pointer-events: none;
+      z-index: -2;
+    }
+    @keyframes grid-move { 0% { transform: translate(0,0);} 100% { transform: translate(50px,50px);} }
+
+    .wrap {
+      max-width: min(1200px, 100% - 2rem);
+      margin-inline: auto;
+      padding: clamp(16px, 2vw, 32px);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Floating particles (kept) */
+    .particles, .bg-orbs {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: -1;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute; width: 4px; height: 4px; background: var(--brand);
+      border-radius: 50%; animation: float-particle 15s infinite ease-in-out; opacity: .3;
+    }
+    .particle:nth-child(1){ left:10%; animation-delay:0s;}
+    .particle:nth-child(2){ left:30%; animation-delay:-2s;}
+    .particle:nth-child(3){ left:50%; animation-delay:-4s;}
+    .particle:nth-child(4){ left:70%; animation-delay:-6s;}
+    .particle:nth-child(5){ left:90%; animation-delay:-8s;}
+    @keyframes float-particle {
+      0%,100% { transform: translateY(100vh) scale(0); opacity:0; }
+      10% { opacity:.3; transform: translateY(90vh) scale(1); }
+      90% { opacity:.3; transform: translateY(10vh) scale(1); }
+    }
+    .orb { position:absolute; border-radius:50%; filter: blur(80px); opacity:.4; animation: float-orb 25s infinite ease-in-out; }
+    .orb-1{ width:300px; height:300px; background: radial-gradient(circle, rgba(16,185,129,.15), transparent); top:20%; left:-10%; animation-delay:-5s; }
+    .orb-2{ width:400px; height:400px; background: radial-gradient(circle, rgba(59,130,246,.12), transparent); top:60%; right:-15%; animation-delay:-15s; }
+    .orb-3{ width:250px; height:250px; background: radial-gradient(circle, rgba(139,92,246,.10), transparent); top:10%; right:20%; animation-delay:-10s; }
+    @keyframes float-orb { 0%,100%{transform:translate(0,0) rotate(0)} 25%{transform:translate(30px,-40px) rotate(90deg)} 50%{transform:translate(-20px,20px) rotate(180deg)} 75%{transform:translate(40px,10px) rotate(270deg)} }
+
+    /* Header */
+    header {
+      background: var(--gradient-surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid var(--border-bright);
+      border-radius: 32px;
+      padding: clamp(20px, 4vw, 48px);
+      margin-bottom: clamp(20px, 4vw, 48px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glow), var(--shadow-heavy);
+      transition: box-shadow .3s ease, transform .2s ease, border-color .3s ease;
+    }
+    header:hover { transform: translateY(-4px); box-shadow: 0 0 60px rgba(16,185,129,.2), var(--shadow-heavy); border-color: var(--brand); }
+
+    header::before {
+      content:''; position:absolute; inset:0 -100% 0 auto; width:100%;
+      background: linear-gradient(90deg, transparent, rgba(16,185,129,.15), transparent);
+      animation: shimmer 4s infinite;
+    }
+    header::after {
+      content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+      background: conic-gradient(from 0deg, transparent, rgba(16,185,129,.1), transparent);
+      animation: rotate-gradient 10s linear infinite; opacity:.5;
+    }
+    @keyframes shimmer { 0%{left:-100%} 100%{left:100%} }
+    @keyframes rotate-gradient { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+
+    /* Backdrop-filter fallback */
+    @supports not ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
+      header, .card { background: rgba(255,255,255,0.96); }
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: clamp(16px, 2.5vw, 40px);
+      margin-bottom: clamp(16px, 3vw, 40px); position: relative; z-index: 2;
+      flex-wrap: wrap;
+    }
+    .logo { width: 90px; height: 90px; border-radius: 24px; background: var(--gradient-primary);
+      display: grid; place-items: center;
+      box-shadow: 0 0 40px rgba(16,185,129,.3), 0 15px 35px rgba(0,0,0,.1), inset 0 2px 4px rgba(255,255,255,.3);
+      position: relative; animation: pulse-logo 3s infinite ease-in-out; flex: 0 0 auto;
+    }
+    .logo::before { content:''; position:absolute; inset:-2px; border-radius:inherit; background: var(--gradient-primary); z-index:-1; animation: rotate-border 8s linear infinite; }
+    @keyframes pulse-logo { 0%,100%{box-shadow:0 0 40px rgba(16,185,129,.3), 0 15px 35px rgba(0,0,0,.1)} 50%{box-shadow:0 0 60px rgba(16,185,129,.5), 0 20px 40px rgba(0,0,0,.15)} }
+    @keyframes rotate-border { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+
+    .brand-content h1 {
+      margin: 0 0 .5rem 0;
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      font-weight: 800;
+      background: var(--gradient-primary);
+      background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em; position: relative;
+    }
+    .brand-content .tagline { color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.1rem); font-weight: 500; margin: 0; }
+
+    .status-indicators { display:flex; gap: 1rem; margin-top: .8rem; flex-wrap: wrap; }
+    .status-dot { width: 12px; height:12px; border-radius:50%; background: var(--brand); animation: pulse-dot 2s infinite; position: relative; }
+    .status-dot::after { content:''; position:absolute; inset:-4px; border-radius:50%; border:2px solid var(--brand); opacity:.3; animation: ping 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.7} }
+    @keyframes ping { 0%{transform:scale(.8); opacity:.8} 100%{transform:scale(1.5); opacity:0} }
+
+    .cta { margin-left: auto; display:flex; gap: 12px; align-items:center; }
+    .btn {
+      padding: .9rem 1.4rem; border-radius: 14px; font-weight: 600; font-size: .95rem;
+      cursor: pointer; transition: transform .2s ease, box-shadow .2s ease;
+      border: none; position: relative; overflow: hidden; text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem; color: #fff;
+      background: var(--gradient-primary);
+      box-shadow: 0 8px 25px rgba(16,185,129,.3), inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 35px rgba(16,185,129,.4), inset 0 1px 0 rgba(255,255,255,.2); }
+    .btn:active { transform: translateY(0); }
+    .btn:focus-visible { outline: 2px solid var(--border-bright); outline-offset: 2px; }
+    .btn::before { content:''; position:absolute; inset:0; background: linear-gradient(45deg, transparent, rgba(255,255,255,.12), transparent);
+      transform: translateX(-100%); transition: transform .6s ease; }
+    .btn:hover::before{ transform: translateX(100%); }
+
+    /* KPIs */
+    .kpis { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(10px, 1.5vw, 18px); position:relative; z-index:2; }
+    .kpi {
+      background: rgba(255,255,255,.9); border: 2px solid rgba(16,185,129,.2); border-radius: 20px;
+      padding: clamp(12px, 2vw, 18px); text-align:center; font-weight: 600; color: var(--text-accent);
+      position: relative; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow-light);
+    }
+    .kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--gradient-primary); border-radius: 20px 20px 0 0; transform: scaleX(0); transition: transform .3s ease; }
+    .kpi:hover::before { transform: scaleX(1); }
+    .kpi:hover { background: rgba(255,255,255,.95); border-color: var(--brand); transform: translateY(-3px); box-shadow: var(--shadow-medium); }
+
+    /* Content grid */
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: clamp(16px, 2vw, 24px); margin-bottom: clamp(20px, 4vw, 48px); }
+    .col-12 { grid-column: span 12; }
+    .col-6 { grid-column: span 6; }
+    .col-4 { grid-column: span 4; }
+    @media (max-width: 1024px) { .col-6, .col-4 { grid-column: span 12; } }
+
+    /* Cards */
+    .card {
+      background: rgba(255,255,255,.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 24px; padding: clamp(16px, 2.5vw, 28px);
+      position: relative; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      box-shadow: var(--shadow-light); overflow: hidden;
+      animation: fade-in-up .6s ease forwards; opacity: 0; transform: translateY(20px);
+    }
+    .card:nth-child(1){animation-delay:.1s;} .card:nth-child(2){animation-delay:.2s;} .card:nth-child(3){animation-delay:.3s;}
+    .card:nth-child(4){animation-delay:.4s;} .card:nth-child(5){animation-delay:.5s;} .card:nth-child(6){animation-delay:.6s;}
+    @keyframes fade-in-up { to { opacity:1; transform: translateY(0);} }
+
+    .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: var(--gradient-primary); transform: scaleX(0); transition: transform .3s ease; }
+    .card::after { content:''; position:absolute; top:10px; right:10px; width:100px; height:100px; background: radial-gradient(circle, rgba(16,185,129,.1), transparent); border-radius:50%; transform: scale(0); transition: transform .3s ease; }
+    .card:hover { border-color: var(--border-bright); transform: translateY(-4px); box-shadow: var(--shadow-heavy); background: rgba(255,255,255,.98); }
+    .card:hover::before { transform: scaleX(1); }
+    .card:hover::after { transform: scale(1); }
+
+    .card h3 { margin: 0 0 1rem; font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 700; color: var(--text-accent); display:flex; align-items:center; gap:.75rem; }
+    .card h3::before { content:''; width:24px; height:24px; background: var(--gradient-primary); border-radius: 6px; flex-shrink:0; }
+    .card p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.7; }
+
+    /* Table: sticky header + horizontal scroll for small screens */
+    .table-container {
+      border-radius: 16px; background: rgba(255,255,255,.9); border: 1px solid var(--border); box-shadow: var(--shadow-light);
+      overflow: hidden;
+    }
+    .table-scroll { overflow: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 560px; }
+    th, td { padding: 1.0rem .9rem; text-align:left; border-bottom: 1px solid var(--border); transition: background-color .2s ease; vertical-align: top; }
+    th {
+      background: linear-gradient(135deg, rgba(16,185,129,.10), rgba(59,130,246,.05));
+      font-weight: 700; color: var(--text-accent); font-size: .85rem; text-transform: uppercase; letter-spacing: .05em;
+      position: sticky; top: 0; z-index: 1;
+    }
+    th::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background: var(--gradient-primary); }
+    tbody tr { transition: background-color .2s ease, transform .2s ease; }
+    tbody tr:hover { background: rgba(16,185,129,.05); transform: scale(1.005); }
+    tr:last-child td { border-bottom: none; }
+    code {
+      background: rgba(16,185,129,.10); border:1px solid rgba(16,185,129,.25); color: var(--brand);
+      padding:.25rem .6rem; border-radius:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-weight: 600; font-size: .9em; transition: transform .2s ease, background-color .2s ease;
+    }
+    code:hover { background: rgba(16,185,129,.15); transform: scale(1.03); }
+
+    /* Lists */
+    ul { padding-left: 0; list-style: none; }
+    li { margin: .9rem 0; padding-left: 2rem; position: relative; transition: transform .2s ease; }
+    li::before { content:''; position:absolute; left:0; top:.6rem; width:12px; height:12px; background: var(--gradient-primary); border-radius:50%; }
+    li::after { content:'→'; position:absolute; left:3px; top:.4rem; color:#fff; font-size:.7rem; font-weight:700; }
+    li:hover { transform: translateX(4px); }
+    li strong { color: var(--text-accent); font-weight: 700; }
+
+    /* Highlight card (unchanged palette) */
+    .card.highlight {
+      background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(240,253,250,.95));
+      border: 2px solid var(--border-bright);
+    }
+    .card.highlight h3 {
+      background: var(--gradient-primary);
+      background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color: transparent;
+    }
+
+    /* Progress bar (kept visual, improved perf) */
+    .progress-bar {
+      width: 100%; height: 4px; background: rgba(16,185,129,.10); border-radius: 2px; margin: .75rem 0 1rem; overflow: hidden; position: relative;
+    }
+    .progress-bar::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background: var(--gradient-primary); animation: loading-bar 3s infinite ease-in-out; }
+    @keyframes loading-bar { 0%{left:-100%} 50%{left:0%} 100%{left:100%} }
+
+    /* Footer */
+    footer {
+      text-align:center; color: var(--text-muted); padding: clamp(20px, 3vw, 48px) 0;
+      border-top: 2px solid var(--border); margin-top: clamp(24px, 4vw, 64px);
+      background: var(--gradient-accent); border-radius: 24px 24px 0 0; position: relative;
+    }
+    footer::before { content:''; position:absolute; top:0; left:50%; transform: translateX(-50%); width:100px; height:4px; background: var(--gradient-primary); border-radius: 2px; }
+
+    /* Scroll indicator (JS controlled width; removed animation-timeline) */
+    .scroll-indicator { position: fixed; top: 0; left: 0; height: 4px; background: var(--gradient-primary); z-index: 1000; width: 0%; }
+
+    /* Responsive enhancements */
+    @media (max-width: 768px) {
+      header { padding: 24px; }
+      .brand { flex-direction: column; text-align: center; }
+      .cta { margin-left: 0; }
+      .logo { width: 72px; height: 72px; }
+    }
+
+    /* Print */
+    @media print {
+      body { background:#fff !important; color:#000 !important; }
+      .bg-orbs, .particles, .scroll-indicator { display: none !important; }
+      .card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+      .btn { display: none; }
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll progress indicator (JS-driven) -->
+  <div class="scroll-indicator" id="scroll-progress"></div>
+
+  <!-- Floating particles -->
+  <div class="particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/SKUNKSCRAPE/SkunkScrapeCodex/7a1198b7682e84070bd12a6492f9c3e65e6e2164/9.svg" alt="Skunkworks logo" style="width: 45px; height: 45px;" />
+        </div>
+        <div class="brand-content">
+          <h1>Skunkworks Local Lead Generator</h1>
+          <p class="tagline">Dialler‑ready STI leads • 100% local • compliant & self‑learning</p>
+          <div class="status-indicators" aria-label="System status">
+            <div class="status-dot" title="System Online"></div>
+            <div class="status-dot" style="animation-delay:.5s" title="Data Processing"></div>
+            <div class="status-dot" style="animation-delay:1s" title="Compliance Active"></div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn" onclick="window.print()">📄 Save PDF</button>
+        </div>
+      </div>
+
+      <div class="kpis" role="list" aria-label="Key features">
+        <div class="kpi" role="listitem">📱 Valid SA mobile (E.164)</div>
+        <div class="kpi" role="listitem">💼 Employed / Self‑employed</div>
+        <div class="kpi" role="listitem">🚗 Owns a car (flag or probability)</div>
+        <div class="kpi" role="listitem">🚫 DNC‑suppressed & deduped</div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="col-6">
+        <article class="card" aria-labelledby="what-you-get">
+          <h3 id="what-you-get">📊 What you get</h3>
+          <p>Daily CSV export in a standard schema, ready for your dialler/CRM with full audit trail and compliance markers.</p>
+          <div class="progress-bar" aria-hidden="true"></div>
+          <div class="table-container" role="region" aria-label="CSV columns">
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">CSV columns</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>msisdn</code></td><td>Mobile number (E.164, ZA)</td></tr>
+                  <tr><td><code>full_name</code></td><td>Optional contact name</td></tr>
+                  <tr><td><code>employment_status</code></td><td>employed | self_employed</td></tr>
+                  <tr><td><code>vehicle_owner</code></td><td>true/false</td></tr>
+                  <tr><td><code>province</code></td><td>Region (if present)</td></tr>
+                  <tr><td><code>consent_status</code></td><td>opt_in | first_contact_only | unknown</td></tr>
+                  <tr><td><code>source</code></td><td>Partner / Microsite / Directory</td></tr>
+                  <tr><td><code>quality_score</code></td><td>0—100 prioritisation</td></tr>
+                  <tr><td><code>last_verified_at</code></td><td>UTC timestamp</td></tr>
+                  <tr><td><code>notes</code></td><td>Free text / provenance</td></tr>
+                  <tr><td><code>vehicle_ownership_probability</code></td><td>0—1 probability (self‑learning)</td></tr>
+                  <tr><td><code>signals</code></td><td>JSON of audit signals</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="col-6">
+        <article class="card" aria-labelledby="how-it-works">
+          <h3 id="how-it-works">⚙️ How it works (local‑first)</h3>
+          <p>Automated pipeline that processes, validates, and enriches leads while maintaining full compliance and data sovereignty.</p>
+          <div class="progress-bar" aria-hidden="true"></div>
+          <ul>
+            <li><strong>Inputs:</strong> Partner CSVs → <code>./inbox/</code>; optional whitelisted pages in <code>./seeds/</code>; local DNC in <code>./dnc/</code>.</li>
+            <li><strong>Validation:</strong> normalise to E.164; ensure <em>mobile</em> (not landline/VoIP).</li>
+            <li><strong>Gating:</strong> keep only employed/self‑employed, and <em>owns car</em> by flag or probability ≥ 0.60.</li>
+            <li><strong>Scoring & dedupe:</strong> compute quality score and persist a single freshest record per number (SQLite).</li>
+            <li><strong>Exports:</strong> daily‑rotated CSV in <code>./out/</code>.</li>
+          </ul>
+          <p style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 12px; border-left: 4px solid var(--brand);">
+            <strong>🤖 Self‑learning:</strong> drop agent outcomes (<code>mobile, owns_car_confirmed</code>) into <code>./outcomes/</code> to improve probabilities.
+          </p>
+        </article>
+      </section>
+
+      <section class="col-4">
+        <article class="card" aria-labelledby="compliance">
+          <h3 id="compliance">🔒 Compliance & privacy</h3>
+          <div class="progress-bar" aria-hidden="true"></div>
+          <ul>
+            <li>Use sources with ToS that permit reuse; keep <code>source</code> & <code>signals</code> for audit.</li>
+            <li>Local DNC enforced; update via CSVs in <code>./dnc/</code>.</li>
+            <li>No NaTIS/DHA scraping; partner plugins can be added later.</li>
+            <li>Offline by default—data stays on your machine.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="col-4">
+        <article class="card" aria-labelledby="what-skunkworks-provides">
+          <h3 id="what-skunkworks-provides">📦 What Skunkworks provides</h3>
+          <div class="progress-bar" aria-hidden="true"></div>
+          <ul>
+            <li>Windows‑packaged <strong>Local Lead Generator</strong> app.</li>
+            <li>Config & CSV templates (partners, DNC, outcomes, seeds).</li>
+            <li>Quick‑start guide + light operator training.</li>
+            <li>Branding and column/threshold tweaks as needed.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="col-4">
+        <article class="card" aria-labelledby="client-resp">
+          <h3 id="client-resp">✅ Client responsibilities</h3>
+          <div class="progress-bar" aria-hidden="true"></div>
+          <ul>
+            <li>Provide compliant input sources; confirm ToS where applicable.</li>
+            <li>Supply up‑to‑date DNC lists.</li>
+            <li>Share agent outcomes periodically to improve accuracy.</li>
+            <li>Approve gating thresholds (e.g., quality ≥ 70; probability ≥ 0.60).</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="col-12">
+        <article class="card highlight" aria-labelledby="why-it-wins">
+          <h3 id="why-it-wins">🏆 Why it wins</h3>
+          <div class="progress-bar" aria-hidden="true"></div>
+          <ul>
+            <li><strong>Local, fast, compliant</strong>: zero cloud—just your PC.</li>
+            <li><strong>Dialler‑ready daily</strong> with clear audit fields.</li>
+            <li><strong>Self‑improving</strong> via simple outcome drops—no data‑science team required.</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">
+        Skunkworks (Pty) Ltd
+      </div>
+      <div style="color: var(--text-muted);">
+        Short‑Term Insurance lead automation • <span style="opacity: 0.7;">v1.1 (Responsive)</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll progress: widely supported
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      function onScroll() {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = (max > 0) ? (window.scrollY / max) * 100 : 0;
+        bar.style.width = pct + '%';
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+    }());
+
+    // Staggered card reveal with IntersectionObserver (graceful if missing)
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.card').forEach(function (c) {
+          c.style.opacity = '1'; c.style.transform = 'none';
+        });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'none';
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.card').forEach(function (c) { io.observe(c); });
+    }());
+  </script>
+</body>
+</html>
