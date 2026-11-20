@@ -1,3 +1,7 @@
+> **Architecture notice (2026-11-20):** This Firebase/GCP pipeline is a **reference implementation**, not the approved production source of truth for the Skunky platform. A single platform direction is defined in the [canonical Skunky architecture ADR](https://github.com/skunky-bot/www/blob/main/docs/architecture/ADR-0001-skunky-platform.md), with hosting and migrations explicitly deferred pending review. Preserve this code until a tested migration and rollback decision; avoid creating competing production pipelines.
+
+---
+
 # SkunkScrape Codex
 
 A single source of truth for the scraping → enrichment → compliance → export pipeline. Built on Firebase + Google Cloud (Cloud Functions, Cloud Run, Pub/Sub, Scheduler, Storage, Firestore). Dialler-ready leads for STI campaigns, optimized for africa-south1.
